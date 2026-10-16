@@ -1,0 +1,14 @@
+{
+  "name": "theloop",
+  "short_name": "theloop",
+  "description": "The agent loop as a stateless HTTP service.",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#f4f0e6",
+  "theme_color": "#f4f0e6",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

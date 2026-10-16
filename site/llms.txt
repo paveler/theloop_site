@@ -1,0 +1,31 @@
+# theloop
+
+> theloop is an open-source agent loop that runs as a stateless HTTP service. One `POST /runs` is one run: the request carries the provider, model, API key, prompt, full history, tools (URL + JSON schema) and limits. The engine runs model → tools → model until a final answer, streams text over SSE, delivers the result and billing-grade usage by callback, and keeps no state between calls. Apache 2.0, Node 22, TypeScript.
+
+Key facts:
+
+- Status: v1.0, contract frozen (semver, no breaking changes within 1.x). Latest release: v1.0.1. The implementation is young; expect fixes, not contract changes.
+- Built for teams that ship assistants to many users: multi-tenant by construction, because there is no tenant state in the engine.
+- Not a framework or SDK you import. Your backend (the "harness") stores history, assistants, tools and operations, and owns approvals and billing. The engine owns the loop, streaming, cancellation, limits and accounting.
+- Write tools are intents: a tool with `effect: "write"` answers `deferred` with an operation id; the mutation happens in your system after approval, never inside a tool call. A prompt-injected model can ask for an action but cannot carry it out, provided your endpoints follow the trust model.
+- Usage: one record per provider attempt, including failed and interrupted ones, with uncached input, cache read/write and an explicit `estimated` flag. Optional cost from your price list; token and cost budgets.
+- Delivery: at-least-once callback with retries, deduplicated by `run_id`; results readable at `GET /runs/{id}` for recovery.
+- Egress: HTTPS only, host allowlist, no private IPs, no redirects, header filtering. Provider keys never appear in logs, SSE, callbacks or error bodies.
+- Providers: Anthropic, OpenAI, DeepSeek, GLM (z.ai), GigaChat, MiniMax and any OpenAI-compatible endpoint, with per-request keys, per-key queues and AIMD rate limiting.
+- Not in v1: MCP tools, multiple instances, history summarization, RAG, multi-agent orchestration. Several of these are proposals in the roadmap.
+- Run it: `git clone https://github.com/paveler/theloop.git && cd theloop && npm install && npm run dev` (Node 22.9+), or `docker run -p 8080:8080 -e ENGINE_TOKEN=change-me -e ANTHROPIC_API_KEY=… ghcr.io/paveler/theloop:1`.
+- Website: https://theloopengine.com · Repository: https://github.com/paveler/theloop · Docker image: ghcr.io/paveler/theloop
+- Author: Pavel Ershov (https://github.com/paveler).
+
+## Docs
+
+- [README](https://raw.githubusercontent.com/paveler/theloop/main/README.md): overview, quickstart, trust model, how it fits, code map
+- [SPEC v1](https://raw.githubusercontent.com/paveler/theloop/main/SPEC.md): the contract — HTTP API, message format, tools and `effect`, result and callback, usage and billing, providers, limits, reliability, errors, deployment, harness obligations
+- [sqlite-harness example](https://raw.githubusercontent.com/paveler/theloop/main/examples/sqlite-harness/README.md): a complete harness on SQLite — history, a read tool, a write tool with approval, continuation, recovery
+
+## Optional
+
+- [ROADMAP](https://raw.githubusercontent.com/paveler/theloop/main/ROADMAP.md): proposals — more providers, model fallbacks, MCP tools, OpenTelemetry, skills, compaction, sub-runs, a reference harness
+- [AGENTS.md](https://raw.githubusercontent.com/paveler/theloop/main/AGENTS.md): how to work on the code — commands, architecture rules, conventions, tests, releases
+- [Repository](https://github.com/paveler/theloop): source, issues, releases
+- [Landing page](https://theloopengine.com/): the human-friendly version of this file
