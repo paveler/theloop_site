@@ -15,7 +15,7 @@ Key facts:
 - Not in v1: MCP tools, multiple instances, history summarization, RAG, multi-agent orchestration. Several of these are proposals in the roadmap.
 - Run it: `git clone https://github.com/paveler/theloop.git && cd theloop && npm install && npm run dev` (Node 22.9+), or `docker run -p 8080:8080 -e ENGINE_TOKEN=change-me -e ANTHROPIC_API_KEY=… ghcr.io/paveler/theloop:1`.
 - Website: https://theloopengine.com · Repository: https://github.com/paveler/theloop · Docker image: ghcr.io/paveler/theloop
-- Author: Pavel Ershov (https://github.com/paveler).
+- Author: Pavel Ershov (https://github.com/paveler), pavel@ershov.org — questions, feedback and integrations welcome.
 
 ## Docs
 
