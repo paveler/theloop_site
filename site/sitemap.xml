@@ -12,4 +12,24 @@
     <loc>https://theloopengine.com/vs/langgraph/</loc>
     <lastmod>2026-10-19</lastmod>
   </url>
+  <url>
+    <loc>https://theloopengine.com/vs/</loc>
+    <lastmod>2026-10-19</lastmod>
+  </url>
+  <url>
+    <loc>https://theloopengine.com/vs/openai/</loc>
+    <lastmod>2026-10-19</lastmod>
+  </url>
+  <url>
+    <loc>https://theloopengine.com/vs/ai-sdk/</loc>
+    <lastmod>2026-10-19</lastmod>
+  </url>
+  <url>
+    <loc>https://theloopengine.com/vs/litellm/</loc>
+    <lastmod>2026-10-19</lastmod>
+  </url>
+  <url>
+    <loc>https://theloopengine.com/vs/n8n/</loc>
+    <lastmod>2026-10-19</lastmod>
+  </url>
 </urlset>

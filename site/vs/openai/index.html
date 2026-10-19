@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>theloop vs OpenAI Responses & Agents API — any provider, nothing stored</title>
+<meta name="description" content="theloop vs OpenAI's Responses API and Agents API in two minutes. OpenAI runs agents on its own models and stores conversations by default. theloop is a self-hosted stateless service that talks to any provider per request.">
+<link rel="canonical" href="https://theloopengine.com/vs/openai/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="author" content="Pavel Ershov">
+<meta name="theme-color" content="#f4f0e6">
+<meta name="color-scheme" content="light">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="theloop">
+<meta property="og:url" content="https://theloopengine.com/vs/openai/">
+<meta property="og:title" content="theloop vs OpenAI's agent APIs: one provider vs any provider">
+<meta property="og:description" content="OpenAI's agents speak OpenAI. theloop speaks to any provider and stores nothing. Two-minute comparison.">
+<meta property="og:image" content="https://theloopengine.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="theloop vs OpenAI's agent APIs: one provider vs any provider">
+<meta name="twitter:description" content="OpenAI's agents speak OpenAI. theloop speaks to any provider and stores nothing. Two-minute comparison.">
+<meta name="twitter:image" content="https://theloopengine.com/og.png">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/instrument-serif-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/vs/vs.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://theloopengine.com/vs/openai/#webpage",
+      "url": "https://theloopengine.com/vs/openai/",
+      "name": "theloop vs OpenAI",
+      "description": "theloop vs OpenAI's Responses API and Agents API in two minutes. OpenAI runs agents on its own models and stores conversations by default. theloop is a self-hosted stateless service that talks to any provider per request.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://theloopengine.com/#website"
+      },
+      "about": {
+        "@id": "https://theloopengine.com/#software"
+      },
+      "datePublished": "2026-10-19",
+      "dateModified": "2026-10-19"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "theloop",
+          "item": "https://theloopengine.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Compare",
+          "item": "https://theloopengine.com/vs/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "theloop vs OpenAI",
+          "item": "https://theloopengine.com/vs/openai/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="logo" aria-label="theloop home">
+      <span class="ring" aria-hidden="true"></span>
+      <span class="wordmark">theloop</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/vs/">Compare</a>
+      <a class="opt" href="https://github.com/paveler/theloop/blob/main/SPEC.md">SPEC</a>
+      <a class="pill" href="https://github.com/paveler/theloop">★ Star on GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="wrap hero" aria-labelledby="hero-title">
+  <ul class="badges" aria-label="Page facts">
+    <li>theloop vs OpenAI</li>
+    <li>2-minute read</li>
+  </ul>
+  <h1 id="hero-title">OpenAI's agents speak OpenAI.<br>theloop speaks <em>everyone</em>.</h1>
+  <p class="lead">OpenAI's Responses API, and its newer Agents API in beta, let OpenAI run the agent for you: on its servers, with its models, and by default it keeps the conversation too. theloop is a service you run yourself. Any provider, chosen per request, and nothing is stored.</p>
+</section>
+
+<section class="wrap" aria-labelledby="plain-title">
+  <h2 id="plain-title">In plain words.</h2>
+  <div class="duo">
+    <article class="side side-them">
+      <span class="who">OpenAI</span>
+      <h3>A hotel concierge.</h3>
+      <p>Brilliant, with tools on hand: web search, file search, a code interpreter. But it's their hotel: their models, their building, and they keep the guest book.</p>
+    </article>
+    <article class="side side-us">
+      <span class="who">theloop</span>
+      <h3>A freelance runner.</h3>
+      <p>Takes the job with whichever provider's key you hand over, runs the loop, brings back the answer and the receipt. Keeps no notes.</p>
+    </article>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="cmp-title">
+  <h2 id="cmp-title">Side by side.</h2>
+  <table class="cmp">
+    <thead>
+      <tr><th scope="col"><span class="vh">Question</span></th><th scope="col">OpenAI</th><th scope="col" class="us">theloop</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">What is it?</th>
+        <td data-label="OpenAI">OpenAI's hosted APIs: Responses, plus the Agents API in beta</td>
+        <td data-label="theloop" class="us">An open-source service you host. Run it with Docker or Node</td>
+      </tr>
+      <tr>
+        <th scope="row">Models</th>
+        <td data-label="OpenAI">OpenAI's</td>
+        <td data-label="theloop" class="us">Anthropic, OpenAI, DeepSeek, GLM, GigaChat, MiniMax or anything OpenAI-compatible, picked per request</td>
+      </tr>
+      <tr>
+        <th scope="row">Conversation storage</th>
+        <td data-label="OpenAI">Responses are stored by default for 30 days and chained by <code>previous_response_id</code>. The Agents API works in sessions</td>
+        <td data-label="theloop" class="us">Nothing is stored. History lives in your database</td>
+      </tr>
+      <tr>
+        <th scope="row">Your own tools</th>
+        <td data-label="OpenAI">Function calls come back to your code, and your code runs them</td>
+        <td data-label="theloop" class="us">theloop calls your HTTPS endpoints itself</td>
+      </tr>
+      <tr>
+        <th scope="row">Built-in tools</th>
+        <td data-label="OpenAI">Web search, file search, code interpreter and more <span class="win">OpenAI wins</span></td>
+        <td data-label="theloop" class="us">Not yet. Provider-native tools are a roadmap proposal</td>
+      </tr>
+      <tr>
+        <th scope="row">Risky actions</th>
+        <td data-label="OpenAI">Your code decides whether to run each function</td>
+        <td data-label="theloop" class="us">Write tools answer <code>deferred</code>, and your system approves</td>
+      </tr>
+      <tr>
+        <th scope="row">Where it runs</th>
+        <td data-label="OpenAI">OpenAI's cloud</td>
+        <td data-label="theloop" class="us">Your servers</td>
+      </tr>
+      <tr>
+        <th scope="row">Price</th>
+        <td data-label="OpenAI">Pay OpenAI per token</td>
+        <td data-label="theloop" class="us">Free, Apache 2.0. You pay the providers directly</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wrap" aria-labelledby="pick-title">
+  <h2 id="pick-title">Which one is <em>yours</em>?</h2>
+  <div class="picks">
+    <div class="pick pick-them">
+      <h3>Pick OpenAI if…</h3>
+      <ul>
+        <li>You're all-in on OpenAI models</li>
+        <li>You want hosted web search, file search or a code interpreter without building them</li>
+        <li>You'd rather not run a single server</li>
+      </ul>
+    </div>
+    <div class="pick pick-us">
+      <h3>Pick theloop if…</h3>
+      <ul>
+        <li>You want to switch providers per customer, or per request</li>
+        <li>Conversations shouldn't sit in a vendor's storage</li>
+        <li>You need providers like GigaChat, GLM or DeepSeek next to OpenAI</li>
+        <li>Finance wants usage per attempt, failed ones included</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note">
+    <p><strong>Not either-or.</strong> OpenAI is one of theloop's providers. Same models, but the loop and the history stay with you.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <h2>Any model.<br><em>No</em> memory.</h2>
+    <div class="ctas">
+      <a class="btn btn-accent" href="https://github.com/paveler/theloop">★ Star paveler/theloop</a>
+      <a class="btn btn-outline" href="/vs/">More comparisons →</a>
+    </div>
+    <div class="sources">
+      <p>Facts about OpenAI were checked against its official docs in October 2026: <a href="https://developers.openai.com/api/docs/guides/conversation-state">conversation state</a>, <a href="https://developers.openai.com/api/docs/guides/function-calling">function calling</a>, <a href="https://developers.openai.com/api/docs/guides/agents-api/tools/functions">Agents API function tools</a>, <a href="https://developers.openai.com/api/docs/guides/tools">tools</a>. Spotted something out of date? <a href="mailto:pavel@ershov.org">Tell me</a> and I'll fix it.</p>
+    </div>
+    <div class="meta">
+      <p><a href="/">theloop</a> · Apache 2.0 · by <a href="https://github.com/paveler" rel="author">Pavel Ershov</a></p>
+      <nav aria-label="Documents">
+        <a href="https://github.com/paveler/theloop/blob/main/SPEC.md">SPEC.md</a>
+        <a href="https://github.com/paveler/theloop/blob/main/ROADMAP.md">ROADMAP.md</a>
+        <a href="/llms.txt">llms.txt</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

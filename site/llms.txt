@@ -29,5 +29,10 @@ Key facts:
 - [AGENTS.md](https://raw.githubusercontent.com/paveler/theloop/main/AGENTS.md): how to work on the code — commands, architecture rules, conventions, tests, releases
 - [Repository](https://github.com/paveler/theloop): source, issues, releases
 - [Landing page](https://theloopengine.com/): the human-friendly version of this file
+- [Compare](https://theloopengine.com/vs/): two-minute comparisons with LangChain, LangGraph, OpenAI, Vercel AI SDK, LiteLLM and n8n
 - [theloop vs LangChain](https://theloopengine.com/vs/langchain/): a framework you import vs a stateless service you call
 - [theloop vs LangGraph](https://theloopengine.com/vs/langgraph/): checkpointed graphs vs one run that keeps no state
+- [theloop vs OpenAI](https://theloopengine.com/vs/openai/): OpenAI's hosted, stateful agent APIs vs a self-hosted stateless loop for any provider
+- [theloop vs Vercel AI SDK](https://theloopengine.com/vs/ai-sdk/): a TypeScript library with an in-process loop vs the same engine behind HTTP
+- [theloop vs LiteLLM](https://theloopengine.com/vs/litellm/): an AI gateway that routes model calls vs a service that runs the whole agent loop; they compose
+- [theloop vs n8n](https://theloopengine.com/vs/n8n/): a visual workflow builder with AI nodes vs a headless agent engine to embed in your product

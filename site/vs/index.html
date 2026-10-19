@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>theloop compared — LangChain, LangGraph, OpenAI, AI SDK, LiteLLM, n8n</title>
+<meta name="description" content="How theloop compares to LangChain, LangGraph, OpenAI's agent APIs, Vercel AI SDK, LiteLLM and n8n. Two-minute reads in plain words, with the places where the other tool wins.">
+<link rel="canonical" href="https://theloopengine.com/vs/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="author" content="Pavel Ershov">
+<meta name="theme-color" content="#f4f0e6">
+<meta name="color-scheme" content="light">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="theloop">
+<meta property="og:url" content="https://theloopengine.com/vs/">
+<meta property="og:title" content="theloop vs everyone">
+<meta property="og:description" content="Two-minute comparisons with LangChain, LangGraph, OpenAI, AI SDK, LiteLLM and n8n.">
+<meta property="og:image" content="https://theloopengine.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="theloop vs everyone">
+<meta name="twitter:description" content="Two-minute comparisons with LangChain, LangGraph, OpenAI, AI SDK, LiteLLM and n8n.">
+<meta name="twitter:image" content="https://theloopengine.com/og.png">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/instrument-serif-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/vs/vs.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://theloopengine.com/vs/#webpage",
+      "url": "https://theloopengine.com/vs/",
+      "name": "theloop compared",
+      "description": "How theloop compares to LangChain, LangGraph, OpenAI's agent APIs, Vercel AI SDK, LiteLLM and n8n. Two-minute reads in plain words, with the places where the other tool wins.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://theloopengine.com/#website"
+      },
+      "about": {
+        "@id": "https://theloopengine.com/#software"
+      },
+      "datePublished": "2026-10-19",
+      "dateModified": "2026-10-19"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "theloop",
+          "item": "https://theloopengine.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Compare",
+          "item": "https://theloopengine.com/vs/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="logo" aria-label="theloop home">
+      <span class="ring" aria-hidden="true"></span>
+      <span class="wordmark">theloop</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/vs/" aria-current="page">Compare</a>
+      <a class="opt" href="https://github.com/paveler/theloop/blob/main/SPEC.md">SPEC</a>
+      <a class="pill" href="https://github.com/paveler/theloop">★ Star on GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="wrap hero" aria-labelledby="hero-title">
+  <ul class="badges" aria-label="Page facts">
+    <li>Compare</li>
+    <li>6 two-minute reads</li>
+  </ul>
+  <h1 id="hero-title">theloop vs <em>everyone</em>.</h1>
+  <p class="lead">Most of these tools solve a neighbouring problem, not the same one. Each page takes two minutes, says plainly where the other tool wins, and links to its docs.</p>
+</section>
+
+<section class="wrap" aria-labelledby="list-title">
+  <h2 id="list-title" class="vh">All comparisons</h2>
+  <div class="vs-grid">
+    <a class="vs-card" href="/vs/langchain/">
+      <span class="who">framework</span>
+      <h3>vs LangChain</h3>
+      <p>A kit you build into your app vs a service your app calls.</p>
+      <span class="go" aria-hidden="true">Read →</span>
+    </a>
+    <a class="vs-card" href="/vs/langgraph/">
+      <span class="who">graph framework</span>
+      <h3>vs LangGraph</h3>
+      <p>Saves every step vs remembers nothing at all.</p>
+      <span class="go" aria-hidden="true">Read →</span>
+    </a>
+    <a class="vs-card" href="/vs/openai/">
+      <span class="who">hosted API</span>
+      <h3>vs OpenAI</h3>
+      <p>One provider's cloud vs any provider, on your servers.</p>
+      <span class="go" aria-hidden="true">Read →</span>
+    </a>
+    <a class="vs-card" href="/vs/ai-sdk/">
+      <span class="who">TypeScript library</span>
+      <h3>vs Vercel AI SDK</h3>
+      <p>Same engine, but the loop moves out of your code.</p>
+      <span class="go" aria-hidden="true">Read →</span>
+    </a>
+    <a class="vs-card" href="/vs/litellm/">
+      <span class="who">AI gateway</span>
+      <h3>vs LiteLLM</h3>
+      <p>Routes model calls vs runs the whole loop. They stack.</p>
+      <span class="go" aria-hidden="true">Read →</span>
+    </a>
+    <a class="vs-card" href="/vs/n8n/">
+      <span class="who">workflow builder</span>
+      <h3>vs n8n</h3>
+      <p>Automations on a canvas vs an engine inside your product.</p>
+      <span class="go" aria-hidden="true">Read →</span>
+    </a>
+  </div>
+  <div class="note">
+    <p><strong>The one-line rule.</strong> Want the agent inside your code? Take a framework. Happy for it to live in a vendor's cloud? Take a provider's API. Want a stateless service your product calls, with any model and nothing stored? That's theloop.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <h2>Pick the right tool.<br><em>Even</em> if it's not us.</h2>
+    <div class="ctas">
+      <a class="btn btn-accent" href="https://github.com/paveler/theloop">★ Star paveler/theloop</a>
+      <a class="btn btn-outline" href="/">← Back to theloop</a>
+    </div>
+    <div class="sources">
+      <p>Every comparison links to the official docs it was checked against. Spotted something out of date? <a href="mailto:pavel@ershov.org">Tell me</a> and I'll fix it.</p>
+    </div>
+    <div class="meta">
+      <p><a href="/">theloop</a> · Apache 2.0 · by <a href="https://github.com/paveler" rel="author">Pavel Ershov</a></p>
+      <nav aria-label="Documents">
+        <a href="https://github.com/paveler/theloop/blob/main/SPEC.md">SPEC.md</a>
+        <a href="https://github.com/paveler/theloop/blob/main/ROADMAP.md">ROADMAP.md</a>
+        <a href="/llms.txt">llms.txt</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
