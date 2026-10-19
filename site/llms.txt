@@ -29,3 +29,5 @@ Key facts:
 - [AGENTS.md](https://raw.githubusercontent.com/paveler/theloop/main/AGENTS.md): how to work on the code — commands, architecture rules, conventions, tests, releases
 - [Repository](https://github.com/paveler/theloop): source, issues, releases
 - [Landing page](https://theloopengine.com/): the human-friendly version of this file
+- [theloop vs LangChain](https://theloopengine.com/vs/langchain/): a framework you import vs a stateless service you call
+- [theloop vs LangGraph](https://theloopengine.com/vs/langgraph/): checkpointed graphs vs one run that keeps no state
