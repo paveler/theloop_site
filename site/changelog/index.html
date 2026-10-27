@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>theloop changelog — skills, deferred tools, releases</title>
+<meta name="description" content="What changed in theloop, release by release: skills and deferred tools with load_skill and search_tools, Vercel AI SDK 6, the example harness, and the v1.0 contract.">
+<link rel="canonical" href="https://theloopengine.com/changelog/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="author" content="Pavel Ershov">
+<meta name="theme-color" content="#f4f0e6">
+<meta name="color-scheme" content="light">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="theloop">
+<meta property="og:url" content="https://theloopengine.com/changelog/">
+<meta property="og:title" content="theloop changelog">
+<meta property="og:description" content="Skills and deferred tools, Vercel AI SDK 6, and every release since v1.0.">
+<meta property="og:image" content="https://theloopengine.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="theloop changelog">
+<meta name="twitter:description" content="Skills and deferred tools, Vercel AI SDK 6, and every release since v1.0.">
+<meta name="twitter:image" content="https://theloopengine.com/og.png">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/instrument-serif-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/vs/vs.css">
+<style>
+  /* changelog entries: version rail on the left, notes on the right */
+  .release{display:grid;grid-template-columns:260px 1fr;gap:40px;border-top:1px solid var(--ink);padding:44px 0 52px}
+  .release:last-of-type{border-bottom:1px solid var(--ink)}
+  .rail{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+  .rail h2{font-size:clamp(40px,4.4vw,60px);margin:0}
+  .rail time,.rail .tag{font-family:var(--mono);font-size:13px;color:var(--meta)}
+  .rail .tag{border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:3px 10px}
+  .notes{max-width:820px;min-width:0}
+  .notes > p{margin:0 0 26px;font-size:18px;line-height:1.55;color:var(--body2);text-wrap:pretty}
+  .notes h3{font-family:var(--mono);font-weight:500;font-size:14px;margin:30px 0 4px;color:var(--ink)}
+  .notes h3:first-child{margin-top:0}
+  .notes ul{margin:0;padding:0;list-style:none}
+  .notes li{display:grid;grid-template-columns:28px 1fr;gap:6px;padding:14px 0;border-top:1px solid var(--hair);font-size:16px;line-height:1.55;color:var(--body2)}
+  .notes li::before{content:"→";color:var(--accent)}
+  .notes li strong{color:var(--ink);font-weight:600}
+  .notes code{white-space:normal}
+  .featured{background:var(--ink);color:var(--paper);border-radius:14px;padding:30px 30px 32px;margin:0 0 30px;box-shadow:8px 8px 0 var(--accent)}
+  .featured .who{color:var(--accent-dark)}
+  .featured h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3vw,40px);line-height:1.05;margin:10px 0 14px;color:var(--paper)}
+  .featured p{margin:0;font-size:17px;line-height:1.55;color:var(--paper);text-wrap:pretty}
+  .featured p + p{margin-top:12px}
+  .featured code{background:var(--ink-line);color:var(--paper)}
+  .featured a{color:var(--paper)}
+  pre.req{margin:18px 0 0;background:var(--ink-line);border-radius:10px;padding:16px 18px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.55;color:var(--paper)}
+  pre.req .k{color:var(--accent-dark)}
+  @media (max-width:860px){
+    .release{grid-template-columns:1fr;gap:20px;padding:36px 0 40px}
+    .rail{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:14px}
+  }
+  @media (max-width:640px){
+    .featured{padding:24px 22px 26px}
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://theloopengine.com/changelog/#webpage",
+      "url": "https://theloopengine.com/changelog/",
+      "name": "theloop changelog",
+      "description": "What changed in theloop, release by release: skills and deferred tools with load_skill and search_tools, Vercel AI SDK 6, the example harness, and the v1.0 contract.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://theloopengine.com/#website"
+      },
+      "about": {
+        "@id": "https://theloopengine.com/#software"
+      },
+      "datePublished": "2026-10-27",
+      "dateModified": "2026-10-27"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "theloop",
+          "item": "https://theloopengine.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Changelog",
+          "item": "https://theloopengine.com/changelog/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="logo" aria-label="theloop home">
+      <span class="ring" aria-hidden="true"></span>
+      <span class="wordmark">theloop</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/vs/">Compare</a>
+      <a href="/changelog/" aria-current="page">Changelog</a>
+      <a class="opt" href="https://github.com/paveler/theloop/blob/main/SPEC.md">SPEC</a>
+      <a class="pill" href="https://github.com/paveler/theloop">★ Star on GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="wrap hero" aria-labelledby="hero-title">
+  <ul class="badges" aria-label="Page facts">
+    <li>Changelog</li>
+    <li>contract_version "1"</li>
+    <li>additive only</li>
+  </ul>
+  <h1 id="hero-title">What it <em>forgot</em> to tell you.</h1>
+  <p class="lead">Everything that changed, newest first. The contract is frozen at version 1, so new features arrive as optional fields: a request that does not use them runs exactly as before.</p>
+</section>
+
+<section class="wrap" aria-label="Releases">
+
+  <article class="release" id="unreleased" aria-labelledby="unreleased-title">
+    <div class="rail">
+      <h2 id="unreleased-title">Next</h2>
+      <span class="tag">on main, not tagged yet</span>
+      <time datetime="2026-10-27">2026-10-27</time>
+    </div>
+    <div class="notes">
+      <div class="featured">
+        <span class="who">new · SPEC §6.8 · RFC 0001</span>
+        <h3>Skills and deferred tools</h3>
+        <p>The model no longer has to see every tool and every instruction from the first step. A request can carry <code>skills[]</code> in the <code>SKILL.md</code> shape, and tools marked <code>defer_loading</code>. The model sees a one-line index of skills, calls <code>load_skill</code> when the conversation needs one, and gets its instructions plus its tools from the next step.</p>
+        <p>The engine still remembers nothing: what is loaded comes back from the history on every run. On Anthropic models the activated tools arrive inside the conversation, so the prompt cache survives.</p>
+<pre class="req"><span class="k">"skills"</span>: [
+  { <span class="k">"name"</span>: "order-returns",
+    <span class="k">"description"</span>: "Return and refund policy. Use when the user asks about a return.",
+    <span class="k">"body"</span>: "# Returns\n\nCheck the order status first ...",
+    <span class="k">"tools"</span>: ["createReturn"] }
+]</pre>
+      </div>
+
+      <h3>Added</h3>
+      <ul>
+        <li><span><strong><code>skills[]</code> and the built-in <code>load_skill</code>.</strong> An index of skills (name and description, sorted) is appended to the system prompt. Loading a skill returns its body and makes the tools it lists callable from the next step. Built-in calls take a step but do not count toward <code>max_tool_calls</code>.</span></li>
+        <li><span><strong>Deferred tools.</strong> <code>tools[].defer_loading: true</code> keeps a tool out of the context until something activates it. A call to a tool that is not loaded yet gets <code>tool_not_loaded</code>: it is not executed, not counted and not treated as a repeat, so the same call works on the next step.</span></li>
+        <li><span><strong>The built-in <code>search_tools</code>.</strong> For deferred tools that belong to no skill: BM25 over tool names, descriptions and argument names. It is the same code on every provider and is reproducible from the request. Matches inside a skill point the model to <code>load_skill</code>, so a tool arrives together with its instructions.</span></li>
+        <li><span><strong>Cache-friendly activation.</strong> On Anthropic models with tool search every tool is declared on every step with <code>defer_loading</code>, and activation is a <code>tool_reference</code> in the conversation, so the cached prefix never changes. Other providers get the new tool on the next step, at the cost of one prefix cache miss.</span></li>
+        <li><span><strong>Stateless restoration.</strong> Loaded skills and found tools come back from the <code>tool</code> messages the engine marks <code>builtin: true</code>; the harness stores them like any other message. Trimming never drops a turn that keeps a tool loaded.</span></li>
+        <li><span><strong>Observability.</strong> Built-in calls appear in <code>tool_calls[]</code> with <code>builtin: true</code>. New journal events: <code>skill_loaded</code>, <code>skill_unknown</code>, <code>skills_restored</code>, <code>tool_search</code>, <code>builtin_history_invalid</code>. Text the model wrote, like a search query, goes only to the journal's content.</span></li>
+        <li><span><strong>An example harness.</strong> <a href="https://github.com/paveler/theloop/tree/main/examples/sqlite-harness"><code>examples/sqlite-harness</code></a>: history, a read tool, a write tool with approval, continuation and recovery on SQLite, with a chat in the terminal.</span></li>
+      </ul>
+
+      <h3>Changed</h3>
+      <ul>
+        <li><span><strong>Vercel AI SDK 6.</strong> The engine moved to <code>ai</code> 6.0, <code>@ai-sdk/anthropic</code> 3.0 and <code>@ai-sdk/openai-compatible</code> 2.0. Billing still records uncached input separately from cache read and cache write. On <code>tool_choice: none</code> steps Anthropic now keeps the tools declared.</span></li>
+        <li><span><strong>Checked live.</strong> The signed-thinking round trip across two runs, a tool call with thinking, images, and a skill loaded mid-run on the Anthropic API. The second turn of that run reads its prefix from the cache.</span></li>
+        <li><span><strong>README.</strong> A banner, badges, a comparison with neighbouring tools, a quickstart with the published Docker image, and a <a href="https://github.com/paveler/theloop/blob/main/CHANGELOG.md">CHANGELOG.md</a>.</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="release" id="v1.0.1" aria-labelledby="v101-title">
+    <div class="rail">
+      <h2 id="v101-title">v1.0.1</h2>
+      <time datetime="2026-10-15">2026-10-15</time>
+    </div>
+    <div class="notes">
+      <p>Fixes and docs. No contract changes.</p>
+      <ul>
+        <li><span><strong>The quickstart works.</strong> <code>npm run dev</code> and <code>npm start</code> read <code>.env</code>. Before, the documented steps failed with <code>ENGINE_TOKEN is required</code>. Node 22.9+ is required.</span></li>
+        <li><span><strong>The trust model.</strong> The README states what "a prompt-injected model can ask, not act" depends on, and what the engine guarantees on its own.</span></li>
+        <li><span><strong><code>AGENTS.md</code>.</strong> One instruction file for any coding agent working on the code.</span></li>
+        <li><span><strong>Docker images.</strong> Every release tag publishes <code>ghcr.io/paveler/theloop</code>, after typecheck and tests.</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="release" id="v1.0.0" aria-labelledby="v100-title">
+    <div class="rail">
+      <h2 id="v100-title">v1.0.0</h2>
+      <time datetime="2026-10-15">2026-10-15</time>
+    </div>
+    <div class="notes">
+      <p>The first public release: the agent loop as a stateless HTTP service, with the v1 contract frozen.</p>
+      <ul>
+        <li><span><strong>The contract.</strong> One <code>POST /runs</code> is one run, with everything in the request. SSE with replay, synchronous cancel, at-least-once callback with recovery through <code>GET /runs/{id}</code>, and a session lock held until the result is acknowledged.</span></li>
+        <li><span><strong>The loop.</strong> Driven step by step: tools run only after the model's step is complete, and limits are checked at step boundaries. It detects repeated calls and empty results, and repairs malformed fenced blocks in the answer.</span></li>
+        <li><span><strong>Write intents.</strong> A tool with <code>effect: write</code> answers <code>deferred</code> with an operation id; approval and execution live in your system.</span></li>
+        <li><span><strong>Usage.</strong> One record per provider attempt, including failed and interrupted ones, with cache tokens, optional cost and estimated budgets.</span></li>
+        <li><span><strong>Providers.</strong> Anthropic, OpenAI, DeepSeek, GLM, GigaChat, MiniMax and any OpenAI-compatible endpoint, with a per-key queue and AIMD rate limiting.</span></li>
+        <li><span><strong>Operations.</strong> Controlled egress, provider proxies, graceful shutdown, an error webhook, an in-memory event journal, and engine text in English and Russian.</span></li>
+      </ul>
+    </div>
+  </article>
+
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <h2>New features.<br><em>Same</em> amnesia.</h2>
+    <div class="ctas">
+      <a class="btn btn-accent" href="https://github.com/paveler/theloop">★ Star paveler/theloop</a>
+      <a class="btn btn-outline" href="https://github.com/paveler/theloop/releases">Releases on GitHub</a>
+    </div>
+    <div class="sources">
+      <p>The same notes live in <a href="https://github.com/paveler/theloop/blob/main/CHANGELOG.md">CHANGELOG.md</a>; the design of skills and deferred tools is in <a href="https://github.com/paveler/theloop/blob/main/docs/rfcs/0001-skills-and-deferred-tools.md">RFC 0001</a>, the contract in <a href="https://github.com/paveler/theloop/blob/main/SPEC.md">SPEC §6.8</a>.</p>
+    </div>
+    <div class="meta">
+      <p><a href="/">theloop</a> · Apache 2.0 · by <a href="https://github.com/paveler" rel="author">Pavel Ershov</a></p>
+      <nav aria-label="Documents">
+        <a href="https://github.com/paveler/theloop/blob/main/SPEC.md">SPEC.md</a>
+        <a href="https://github.com/paveler/theloop/blob/main/ROADMAP.md">ROADMAP.md</a>
+        <a href="/vs/">Compare</a>
+        <a href="/llms.txt">llms.txt</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -12,6 +12,7 @@ Key facts:
 - Delivery: at-least-once callback with retries, deduplicated by `run_id`; results readable at `GET /runs/{id}` for recovery.
 - Egress: HTTPS only, host allowlist, no private IPs, no redirects, header filtering. Provider keys never appear in logs, SSE, callbacks or error bodies.
 - Providers: Anthropic, OpenAI, DeepSeek, GLM (z.ai), GigaChat, MiniMax and any OpenAI-compatible endpoint, with per-request keys, per-key queues and AIMD rate limiting.
+- Skills and deferred tools (on main since 2026-10-27, not yet in a tagged release): `skills[]` in the `SKILL.md` shape and tools with `defer_loading`. The model loads a skill's instructions and tools mid-run with the built-in `load_skill`, or finds deferred tools with the built-in `search_tools` (BM25). The engine stays stateless, and the prompt cache survives on Anthropic (`tool_reference`).
 - Not in v1: MCP tools, multiple instances, history summarization, RAG, multi-agent orchestration. Several of these are proposals in the roadmap.
 - Run it: `git clone https://github.com/paveler/theloop.git && cd theloop && npm install && npm run dev` (Node 22.9+), or `docker run -p 8080:8080 -e ENGINE_TOKEN=change-me -e ANTHROPIC_API_KEY=… ghcr.io/paveler/theloop:1`.
 - Website: https://theloopengine.com · Repository: https://github.com/paveler/theloop · Docker image: ghcr.io/paveler/theloop
@@ -25,10 +26,13 @@ Key facts:
 
 ## Optional
 
-- [ROADMAP](https://raw.githubusercontent.com/paveler/theloop/main/ROADMAP.md): proposals — more providers, model fallbacks, MCP tools, OpenTelemetry, skills, compaction, sub-runs, a reference harness
+- [CHANGELOG](https://raw.githubusercontent.com/paveler/theloop/main/CHANGELOG.md): what changed in each release and what is on main
+- [RFC 0001: skills and deferred tools](https://raw.githubusercontent.com/paveler/theloop/main/docs/rfcs/0001-skills-and-deferred-tools.md): the design of `skills[]`, `defer_loading`, `load_skill` and `search_tools`
+- [ROADMAP](https://raw.githubusercontent.com/paveler/theloop/main/ROADMAP.md): proposals — more providers, model fallbacks, MCP tools, OpenTelemetry, compaction, sub-runs, a reference harness
 - [AGENTS.md](https://raw.githubusercontent.com/paveler/theloop/main/AGENTS.md): how to work on the code — commands, architecture rules, conventions, tests, releases
 - [Repository](https://github.com/paveler/theloop): source, issues, releases
 - [Landing page](https://theloopengine.com/): the human-friendly version of this file
+- [Changelog](https://theloopengine.com/changelog/): release notes, newest first
 - [Compare](https://theloopengine.com/vs/): two-minute comparisons with LangChain, LangGraph, OpenAI, Vercel AI SDK, LiteLLM and n8n
 - [theloop vs LangChain](https://theloopengine.com/vs/langchain/): a framework you import vs a stateless service you call
 - [theloop vs LangGraph](https://theloopengine.com/vs/langgraph/): checkpointed graphs vs one run that keeps no state
