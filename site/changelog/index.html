@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>theloop changelog — v1.1.0: skills, deferred tools, releases</title>
+<title>theloop changelog — v1.1.2: audit fixes, skills, deferred tools</title>
 <meta name="description" content="What changed in theloop, release by release: skills and deferred tools with load_skill and search_tools, Vercel AI SDK 6, the example harness, and the v1.0 contract.">
 <link rel="canonical" href="https://theloopengine.com/changelog/">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
@@ -140,10 +140,50 @@
 
 <section class="wrap" aria-label="Releases">
 
+  <article class="release" id="v1.1.2" aria-labelledby="v112-title">
+    <div class="rail">
+      <h2 id="v112-title">v1.1.2</h2>
+      <a class="tag" href="https://github.com/paveler/theloop/releases/tag/v1.1.2">latest release</a>
+      <time datetime="2026-10-27">2026-10-27</time>
+    </div>
+    <div class="notes">
+      <p>Fixes from an external audit. No breaking contract changes: SPEC §6.5 now spells out the cancelled deferred call, and the harness gets one new obligation, H21.</p>
+      <h3>Fixed</h3>
+      <ul>
+        <li><span><strong>Cancel with a deferred call in the batch.</strong> If a write tool had already answered <code>deferred</code> while a parallel read was still running, cancel left that call open, and the next run with the history was refused with <code>unresolved_tool_call</code>. Any terminal status other than <code>awaiting_tool</code> now closes it with <code>cancelled</code>, and its <code>tool_calls[]</code> entry keeps the <code>operation_id</code>. The harness then cancels the operation (H21).</span></li>
+        <li><span><strong>Cancel during an image download.</strong> The aborted download surfaced as <code>image_fetch_failed</code>, and the run ended <code>failed</code>. It now ends <code>cancelled</code>.</span></li>
+        <li><span><strong>Repeats and <code>max_tool_calls</code>.</strong> A repeated call could end the run <code>stopped_limit</code>. Repeats are not executed and no longer count toward the limit. The model gets <code>repeated_call</code> and continues.</span></li>
+        <li><span><strong>Token estimates.</strong> Without provider usage the output estimate now counts generated tool calls. The prompt estimate behind trimming and <code>max_total_tokens</code> counts the per-message date lines.</span></li>
+      </ul>
+      <h3>Security</h3>
+      <ul>
+        <li><span><strong>Callback diagnostics.</strong> A receiver that echoed the request in its error body could leak <code>CALLBACK_SECRET</code>, a <code>callback.headers</code> value or a query value into <code>last_error</code>, the journal and stdout. These values are now redacted wherever they occur.</span></li>
+      </ul>
+      <h3>Example harness</h3>
+      <ul>
+        <li><span>A new amount for the same order updates the pending operation and bumps its version, so a card for the old amount can no longer be confirmed. A callback that beats the <code>POST /runs</code> response is no longer lost. An operation that is already closed continues the conversation at once. H21 is implemented.</span></li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="release" id="v1.1.1" aria-labelledby="v111-title">
+    <div class="rail">
+      <h2 id="v111-title">v1.1.1</h2>
+      <time datetime="2026-10-27">2026-10-27</time>
+    </div>
+    <div class="notes">
+      <p>Fixes and security updates. No contract changes.</p>
+      <ul>
+        <li><span><strong>Signed Claude thinking after the engine's own edits.</strong> Newer Claude models bind each thinking block to the exact prefix before it, so replaying a block after trimming was a <code>400</code>. On those steps the engine asks the provider to drop the stale blocks, and the run goes on. Drops are journaled as <code>thinking_blocks_dropped</code>.</span></li>
+        <li><span><strong>Claude context window: 1M.</strong> The built-in profile assumed 200k for every Claude model and trimmed histories five times too early. It is now 1M, and 200k only for the models that have it.</span></li>
+        <li><span><strong>Dependencies.</strong> <code>hono</code>, <code>@hono/node-server</code>, <code>undici</code> 7.30.1 and <code>fast-uri</code> updated for known advisories. The engine moved to Zod 4, because Zod 3 could exhaust memory on a large invalid body before the request was refused.</span></li>
+      </ul>
+    </div>
+  </article>
+
   <article class="release" id="v1.1.0" aria-labelledby="v110-title">
     <div class="rail">
       <h2 id="v110-title">v1.1.0</h2>
-      <a class="tag" href="https://github.com/paveler/theloop/releases/tag/v1.1.0">latest release</a>
       <time datetime="2026-10-27">2026-10-27</time>
     </div>
     <div class="notes">
