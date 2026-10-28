@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>theloop changelog — v1.1.2: audit fixes, skills, deferred tools</title>
+<title>theloop changelog — v1.2.0: answers on limits, disk journal, presentation invariants</title>
 <meta name="description" content="What changed in theloop, release by release: skills and deferred tools with load_skill and search_tools, Vercel AI SDK 6, the example harness, and the v1.0 contract.">
 <link rel="canonical" href="https://theloopengine.com/changelog/">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
@@ -140,10 +140,33 @@
 
 <section class="wrap" aria-label="Releases">
 
+  <article class="release" id="v1.2.0" aria-labelledby="v120-title">
+    <div class="rail">
+      <h2 id="v120-title">v1.2.0</h2>
+      <a class="tag" href="https://github.com/paveler/theloop/releases/tag/v1.2.0">latest release</a>
+      <time datetime="2026-10-28">2026-10-28</time>
+    </div>
+    <div class="notes">
+      <p>Two RFCs. One default behavior change: a run that hits a step or tool-call limit now ends with an answer. Everything else is opt-in, through new optional fields.</p>
+      <div class="featured">
+        <span class="who">changed · SPEC §10.1 · RFC 0002</span>
+        <h3>A run never ends on a limit without an answer</h3>
+        <p>When the model spent the last allowed step on tool calls, the run used to end <code>stopped_limit</code> with nothing to show the user. Now the last step goes without tools and with a short engine note: answer with what you have. If the model answers, the run is <code>completed</code> with <code>limit_reached</code>. If it does not, the run ends with a fixed localized fallback and <code>answer_source: "fallback"</code>. The same holds for <code>max_tool_calls</code>. <code>limits.final_answer: false</code> restores the old behavior.</p>
+      </div>
+      <h3>Added</h3>
+      <ul>
+        <li><span><strong>Journal on disk.</strong> <code>LOG_DIR</code> writes the event journal to daily JSONL files that survive a deploy, keeps a week by default and caps the directory size. <code>GET /logs</code> reads memory first and falls back to disk, and reports <code>source</code>. The system prompt is stored once by hash instead of in every run.</span></li>
+        <li><span><strong>One presentation per run.</strong> Mark the tools and fenced blocks your UI renders with <code>presents</code>, and set <code>limits.max_presentations</code>. Once the budget is spent, presenting tools are hidden and refused, and presenting blocks are cut.</span></li>
+        <li><span><strong>Blocks belong to the final answer.</strong> With <code>interim: "drop"</code>, a block written in a tool step is removed from the history, so the model stops copying a half-finished card step after step.</span></li>
+        <li><span><strong>Grounded values.</strong> <code>grounded</code> checks that values in a block came from results of the tools you name. An invented value goes through the normal repair.</span></li>
+        <li><span><strong>Repeat tolerance.</strong> <code>limits.max_repeated_calls</code> sets how many repeated calls are forgiven before tools are disabled; <code>0</code> cuts on the first.</span></li>
+      </ul>
+    </div>
+  </article>
+
   <article class="release" id="v1.1.2" aria-labelledby="v112-title">
     <div class="rail">
       <h2 id="v112-title">v1.1.2</h2>
-      <a class="tag" href="https://github.com/paveler/theloop/releases/tag/v1.1.2">latest release</a>
       <time datetime="2026-10-27">2026-10-27</time>
     </div>
     <div class="notes">
