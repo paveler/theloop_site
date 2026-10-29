@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>theloop changelog — v1.2.0: answers on limits, disk journal, presentation invariants</title>
+<title>theloop changelog — v1.2.1: no silent empty answers</title>
 <meta name="description" content="What changed in theloop, release by release: skills and deferred tools with load_skill and search_tools, Vercel AI SDK 6, the example harness, and the v1.0 contract.">
 <link rel="canonical" href="https://theloopengine.com/changelog/">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
@@ -140,10 +140,25 @@
 
 <section class="wrap" aria-label="Releases">
 
+  <article class="release" id="v1.2.1" aria-labelledby="v121-title">
+    <div class="rail">
+      <h2 id="v121-title">v1.2.1</h2>
+      <a class="tag" href="https://github.com/paveler/theloop/releases/tag/v1.2.1">latest release</a>
+      <time datetime="2026-10-29">2026-10-29</time>
+    </div>
+    <div class="notes">
+      <p>A fix that closes the last way a run could end with nothing to show the user.</p>
+      <div class="featured">
+        <span class="who">fixed · SPEC §10.1 rule 8</span>
+        <h3>An empty answer is never the end of a run</h3>
+        <p>The v1.2.0 fallback covered only the step-limit final step. A model whose tools were disabled for repeating itself could still reply with nothing, and the run ended <code>completed</code> with an empty answer. Now an empty reply is dropped and the model is asked once more, without tools, with a short engine note. If it is empty again, the run ends <code>completed</code> with a fixed localized fallback and <code>answer_source: "fallback"</code>. A new journal event, <code>empty_answer</code>, shows each case. <code>limits.final_answer: false</code> keeps the old behavior.</p>
+      </div>
+    </div>
+  </article>
+
   <article class="release" id="v1.2.0" aria-labelledby="v120-title">
     <div class="rail">
       <h2 id="v120-title">v1.2.0</h2>
-      <a class="tag" href="https://github.com/paveler/theloop/releases/tag/v1.2.0">latest release</a>
       <time datetime="2026-10-28">2026-10-28</time>
     </div>
     <div class="notes">
