@@ -147,12 +147,11 @@
       <time datetime="2026-10-29">2026-10-29</time>
     </div>
     <div class="notes">
-      <p>A fix that closes the last way a run could end with nothing to show the user.</p>
-      <div class="featured">
-        <span class="who">fixed · SPEC §10.1 rule 8</span>
-        <h3>An empty answer is never the end of a run</h3>
-        <p>The v1.2.0 fallback covered only the step-limit final step. A model whose tools were disabled for repeating itself could still reply with nothing, and the run ended <code>completed</code> with an empty answer. Now an empty reply is dropped and the model is asked once more, without tools, with a short engine note. If it is empty again, the run ends <code>completed</code> with a fixed localized fallback and <code>answer_source: "fallback"</code>. A new journal event, <code>empty_answer</code>, shows each case. <code>limits.final_answer: false</code> keeps the old behavior.</p>
-      </div>
+      <p>One fix. No contract changes: SPEC §10.1 gains rule 8.</p>
+      <h3>Fixed</h3>
+      <ul>
+        <li><span><strong>An empty answer no longer ends a run silently.</strong> The v1.2.0 fallback covered only the step-limit final step. A model whose tools were disabled for repeating itself could still reply with nothing, and the run ended <code>completed</code> with an empty answer. Now the empty reply is dropped and the model is asked once more, without tools. If it is empty again, the run ends <code>completed</code> with a localized fallback and <code>answer_source: "fallback"</code>. The journal logs each case as <code>empty_answer</code>. <code>limits.final_answer: false</code> keeps the old behavior.</span></li>
+      </ul>
     </div>
   </article>
 
