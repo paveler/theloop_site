@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>theloop changelog — v1.2.1: no silent empty answers</title>
+<title>theloop changelog — v1.3.0: Kimi provider</title>
 <meta name="description" content="What changed in theloop, release by release: skills and deferred tools with load_skill and search_tools, Vercel AI SDK 6, the example harness, and the v1.0 contract.">
 <link rel="canonical" href="https://theloopengine.com/changelog/">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
@@ -140,10 +140,24 @@
 
 <section class="wrap" aria-label="Releases">
 
+  <article class="release" id="v1.3.0" aria-labelledby="v130-title">
+    <div class="rail">
+      <h2 id="v130-title">v1.3.0</h2>
+      <a class="tag" href="https://github.com/paveler/theloop/releases/tag/v1.3.0">latest release</a>
+      <time datetime="2026-10-30">2026-10-30</time>
+    </div>
+    <div class="notes">
+      <p>A new provider. Additive to contract <code>"1"</code>: <code>llm.provider</code> gains one value.</p>
+      <h3>Added</h3>
+      <ul>
+        <li><span><strong>Kimi.</strong> <code>llm.provider: "kimi"</code> runs Moonshot AI's K3 line (<code>kimi-k3.1-pro</code>, <code>-highspeed</code>, <code>kimi-k3</code>, 1M window) through its Anthropic-compatible API, key from the request or <code>KIMI_API_KEY</code>. K3 always thinks. <code>params.thinking</code> sets the depth (<code>low</code> / <code>high</code> / <code>max</code>), and without it the engine asks for <code>low</code>, since the provider default is slow. Kimi's thinking blocks come unsigned. The engine still keeps them and returns them on the next step of a tool loop, as Kimi requires. Parallel tool calls, cache usage and images work out of the box.</span></li>
+      </ul>
+    </div>
+  </article>
+
   <article class="release" id="v1.2.1" aria-labelledby="v121-title">
     <div class="rail">
       <h2 id="v121-title">v1.2.1</h2>
-      <a class="tag" href="https://github.com/paveler/theloop/releases/tag/v1.2.1">latest release</a>
       <time datetime="2026-10-29">2026-10-29</time>
     </div>
     <div class="notes">

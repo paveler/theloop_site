@@ -83,13 +83,13 @@
       "softwareHelp": { "@type": "CreativeWork", "name": "theloop SPEC v1", "url": "https://github.com/paveler/theloop/blob/main/SPEC.md" },
       "license": "https://www.apache.org/licenses/LICENSE-2.0",
       "isAccessibleForFree": true,
-      "softwareVersion": "1.2.1",
+      "softwareVersion": "1.3.0",
       "programmingLanguage": "TypeScript",
       "runtimePlatform": "Node.js 22.9+",
       "operatingSystem": "Linux, macOS, Windows (Node.js 22.9+) or Docker",
       "applicationCategory": "DeveloperApplication",
       "applicationSubCategory": "LLM agent runtime",
-      "keywords": "agent loop, AI agent, LLM agent, stateless, HTTP API, tool calling, function calling, multi-tenant, SSE streaming, LLM usage billing, prompt injection, Anthropic, OpenAI, DeepSeek, GLM, GigaChat, MiniMax, OpenAI-compatible",
+      "keywords": "agent loop, AI agent, LLM agent, stateless, HTTP API, tool calling, function calling, multi-tenant, SSE streaming, LLM usage billing, prompt injection, Anthropic, OpenAI, DeepSeek, GLM, GigaChat, MiniMax, Kimi, OpenAI-compatible",
       "featureList": [
         "Stateless: no database, no configs, no tenant registry",
         "One POST /runs per run; synchronous mode with wait: true",
@@ -100,7 +100,7 @@
         "Optional cost from your price list and token / cost budgets",
         "Controlled egress: HTTPS only, host allowlist, no private IPs, no redirects",
         "Per-request provider keys, per-key queues and AIMD rate limiting",
-        "Providers: Anthropic, OpenAI, DeepSeek, GLM, GigaChat, MiniMax and any OpenAI-compatible endpoint"
+        "Providers: Anthropic, OpenAI, DeepSeek, GLM, GigaChat, MiniMax, Kimi and any OpenAI-compatible endpoint"
       ],
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "author": { "@id": "https://theloopengine.com/#author" },
@@ -138,7 +138,7 @@
         {
           "@type": "Question",
           "name": "Which LLM providers does theloop support?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Anthropic, OpenAI, DeepSeek, GLM (z.ai), GigaChat, MiniMax and any OpenAI-compatible endpoint. Provider keys are passed per request, with per-key queues and AIMD rate limiting. More providers, including OpenRouter, native Gemini and local models, are proposed in the roadmap." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Anthropic, OpenAI, DeepSeek, GLM (z.ai), GigaChat, MiniMax, Kimi and any OpenAI-compatible endpoint. Provider keys are passed per request, with per-key queues and AIMD rate limiting. More providers, including OpenRouter, native Gemini and local models, are proposed in the roadmap." }
         },
         {
           "@type": "Question",
@@ -405,7 +405,7 @@ h2{font-family:var(--serif);font-size:clamp(44px,5.6vw,80px);line-height:.95;let
 
 <div class="providers">
   <ul class="wrap" aria-label="Supported LLM providers">
-    <li class="c-dark" aria-hidden="true">speaks →</li><li>Anthropic</li><li>OpenAI</li><li>DeepSeek</li><li>GLM</li><li>GigaChat</li><li>MiniMax</li><li>anything OpenAI-compatible</li>
+    <li class="c-dark" aria-hidden="true">speaks →</li><li>Anthropic</li><li>OpenAI</li><li>DeepSeek</li><li>GLM</li><li>GigaChat</li><li>MiniMax</li><li>Kimi</li><li>anything OpenAI-compatible</li>
   </ul>
 </div>
 
@@ -448,7 +448,7 @@ h2{font-family:var(--serif);font-size:clamp(44px,5.6vw,80px);line-height:.95;let
     <article>
       <span class="num">06</span>
       <h3>Bring any model.</h3>
-      <p>Anthropic, OpenAI, DeepSeek, GLM, GigaChat, MiniMax or anything OpenAI-compatible — with per-key queues and AIMD rate limiting.</p>
+      <p>Anthropic, OpenAI, DeepSeek, GLM, GigaChat, MiniMax, Kimi or anything OpenAI-compatible — with per-key queues and AIMD rate limiting.</p>
       <span class="aside">per-request keys</span>
     </article>
   </div>
@@ -531,7 +531,7 @@ npm run dev            <span class="c-acc"># → :8080</span></code></pre>
     </div>
     <div class="qa-row">
       <h3>Which LLM providers does theloop support?</h3>
-      <p>Anthropic, OpenAI, DeepSeek, GLM (z.ai), GigaChat, MiniMax and any OpenAI-compatible endpoint. Provider keys are passed per request, with per-key queues and AIMD rate limiting. More providers, including OpenRouter, native Gemini and local models, are proposed in the <a href="https://github.com/paveler/theloop/blob/main/ROADMAP.md">roadmap</a>.</p>
+      <p>Anthropic, OpenAI, DeepSeek, GLM (z.ai), GigaChat, MiniMax, Kimi and any OpenAI-compatible endpoint. Provider keys are passed per request, with per-key queues and AIMD rate limiting. More providers, including OpenRouter, native Gemini and local models, are proposed in the <a href="https://github.com/paveler/theloop/blob/main/ROADMAP.md">roadmap</a>.</p>
     </div>
     <div class="qa-row">
       <h3>How does theloop limit the damage of prompt injection?</h3>

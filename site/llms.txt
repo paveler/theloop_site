@@ -4,14 +4,14 @@
 
 Key facts:
 
-- Status: v1.0, contract frozen (semver, no breaking changes within 1.x). Latest release: v1.2.1 (2026-10-29). The implementation is young; expect fixes, not contract changes.
+- Status: v1.0, contract frozen (semver, no breaking changes within 1.x). Latest release: v1.3.0 (2026-10-30). The implementation is young; expect fixes, not contract changes.
 - Built for teams that ship assistants to many users: multi-tenant by construction, because there is no tenant state in the engine.
 - Not a framework or SDK you import. Your backend (the "harness") stores history, assistants, tools and operations, and owns approvals and billing. The engine owns the loop, streaming, cancellation, limits and accounting.
 - Write tools are intents: a tool with `effect: "write"` answers `deferred` with an operation id; the mutation happens in your system after approval, never inside a tool call. A prompt-injected model can ask for an action but cannot carry it out, provided your endpoints follow the trust model.
 - Usage: one record per provider attempt, including failed and interrupted ones, with uncached input, cache read/write and an explicit `estimated` flag. Optional cost from your price list; token and cost budgets.
 - Delivery: at-least-once callback with retries, deduplicated by `run_id`; results readable at `GET /runs/{id}` for recovery.
 - Egress: HTTPS only, host allowlist, no private IPs, no redirects, header filtering. Provider keys never appear in logs, SSE, callbacks or error bodies.
-- Providers: Anthropic, OpenAI, DeepSeek, GLM (z.ai), GigaChat, MiniMax and any OpenAI-compatible endpoint, with per-request keys, per-key queues and AIMD rate limiting.
+- Providers: Anthropic, OpenAI, DeepSeek, GLM (z.ai), GigaChat, MiniMax, Kimi and any OpenAI-compatible endpoint, with per-request keys, per-key queues and AIMD rate limiting.
 - Skills and deferred tools (since v1.1.0): `skills[]` in the `SKILL.md` shape and tools with `defer_loading`. The model loads a skill's instructions and tools mid-run with the built-in `load_skill`, or finds deferred tools with the built-in `search_tools` (BM25). The engine stays stateless, and the prompt cache survives on Anthropic (`tool_reference`).
 - Not in v1: MCP tools, multiple instances, history summarization, RAG, multi-agent orchestration. Several of these are proposals in the roadmap.
 - Run it: `git clone https://github.com/paveler/theloop.git && cd theloop && npm install && npm run dev` (Node 22.9+), or `docker run -p 8080:8080 -e ENGINE_TOKEN=change-me -e ANTHROPIC_API_KEY=… ghcr.io/paveler/theloop:1`.
