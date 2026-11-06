@@ -4,7 +4,7 @@
 
 Key facts:
 
-- Status: v1.0, contract frozen (semver, no breaking changes within 1.x). Latest release: v1.3.0 (2026-10-30). The implementation is young; expect fixes, not contract changes.
+- Status: v1.0, contract frozen (semver, no breaking changes within 1.x). Latest release: v1.4.0 (2026-11-06). The implementation is young; expect fixes, not contract changes.
 - Built for teams that ship assistants to many users: multi-tenant by construction, because there is no tenant state in the engine.
 - Not a framework or SDK you import. Your backend (the "harness") stores history, assistants, tools and operations, and owns approvals and billing. The engine owns the loop, streaming, cancellation, limits and accounting.
 - Write tools are intents: a tool with `effect: "write"` answers `deferred` with an operation id; the mutation happens in your system after approval, never inside a tool call. A prompt-injected model can ask for an action but cannot carry it out, provided your endpoints follow the trust model.
@@ -28,7 +28,7 @@ Key facts:
 
 - [CHANGELOG](https://raw.githubusercontent.com/paveler/theloop/main/CHANGELOG.md): what changed in each release and what is on main
 - [RFC 0001: skills and deferred tools](https://raw.githubusercontent.com/paveler/theloop/main/docs/rfcs/0001-skills-and-deferred-tools.md): the design of `skills[]`, `defer_loading`, `load_skill` and `search_tools`
-- [ROADMAP](https://raw.githubusercontent.com/paveler/theloop/main/ROADMAP.md): proposals — more providers, model fallbacks, MCP tools, OpenTelemetry, compaction, sub-runs, a reference harness
+- [ROADMAP](https://raw.githubusercontent.com/paveler/theloop/main/ROADMAP.md): proposals — more providers, MCP tools, OpenTelemetry, compaction, sub-runs, a reference harness
 - [AGENTS.md](https://raw.githubusercontent.com/paveler/theloop/main/AGENTS.md): how to work on the code — commands, architecture rules, conventions, tests, releases
 - [Repository](https://github.com/paveler/theloop): source, issues, releases
 - [Landing page](https://theloopengine.com/): the human-friendly version of this file

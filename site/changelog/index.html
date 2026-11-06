@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>theloop changelog — v1.3.0: Kimi provider</title>
+<title>theloop changelog — v1.4.0: model fallback chain</title>
 <meta name="description" content="What changed in theloop, release by release: skills and deferred tools with load_skill and search_tools, Vercel AI SDK 6, the example harness, and the v1.0 contract.">
 <link rel="canonical" href="https://theloopengine.com/changelog/">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
@@ -140,10 +140,24 @@
 
 <section class="wrap" aria-label="Releases">
 
+  <article class="release" id="v1.4.0" aria-labelledby="v140-title">
+    <div class="rail">
+      <h2 id="v140-title">v1.4.0</h2>
+      <a class="tag" href="https://github.com/paveler/theloop/releases/tag/v1.4.0">latest release</a>
+      <time datetime="2026-11-06">2026-11-06</time>
+    </div>
+    <div class="notes">
+      <p>One feature. Additive to contract <code>"1"</code>: <code>llm</code> also accepts an array, and a single object works exactly as before.</p>
+      <h3>Added</h3>
+      <ul>
+        <li><span><strong>Model fallback chain.</strong> Send <code>llm</code> as an array of up to five models, each with its own provider, key, params and price. The run starts on the first one. If it fails before any text reaches the client, the run moves to the next model instead of failing. That covers a bad key, a 4xx, 429, 5xx, a network error, a queue timeout or a context that is too long. The failed model is not retried; only the last one keeps the usual retries. Once a model answers, it serves the rest of the run. The result names the model that answered (<code>llm_used</code>) and every model skipped, with its error (<code>llm_fallbacks</code>). The switch also shows up on SSE, in the journal and on the error webhook, so a failing primary is never silent. Every model in the chain is validated on receipt, and each attempt is billed at its own price.</span></li>
+      </ul>
+    </div>
+  </article>
+
   <article class="release" id="v1.3.0" aria-labelledby="v130-title">
     <div class="rail">
       <h2 id="v130-title">v1.3.0</h2>
-      <a class="tag" href="https://github.com/paveler/theloop/releases/tag/v1.3.0">latest release</a>
       <time datetime="2026-10-30">2026-10-30</time>
     </div>
     <div class="notes">
