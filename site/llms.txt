@@ -4,7 +4,7 @@
 
 Key facts:
 
-- Status: v1.0, contract frozen (semver, no breaking changes within 1.x). Latest release: v1.4.0 (2026-11-06). The implementation is young; expect fixes, not contract changes.
+- Status: v1.0, contract frozen (semver, no breaking changes within 1.x). Latest release: v1.4.1 (2026-11-07). The implementation is young; expect fixes, not contract changes.
 - Built for teams that ship assistants to many users: multi-tenant by construction, because there is no tenant state in the engine.
 - Not a framework or SDK you import. Your backend (the "harness") stores history, assistants, tools and operations, and owns approvals and billing. The engine owns the loop, streaming, cancellation, limits and accounting.
 - Write tools are intents: a tool with `effect: "write"` answers `deferred` with an operation id; the mutation happens in your system after approval, never inside a tool call. A prompt-injected model can ask for an action but cannot carry it out, provided your endpoints follow the trust model.
