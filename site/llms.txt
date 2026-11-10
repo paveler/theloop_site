@@ -33,6 +33,7 @@ Key facts:
 - [Repository](https://github.com/paveler/theloop): source, issues, releases
 - [Landing page](https://theloopengine.com/): the human-friendly version of this file
 - [Changelog](https://theloopengine.com/changelog/): release notes, newest first; v1.1.0 added skills, deferred tools and search_tools; v1.1.1 and v1.1.2 are fixes; v1.2.0 adds an answer on step limits, a disk journal and presentation invariants; v1.2.1 re-asks an empty answer instead of ending the run silently
+- [Blog: Your agent loop should forget the conversation](https://theloopengine.com/blog/stateless-agent-loop/): what a loop without conversation or tenant state costs — the history upload, prompt caching, result delivery, a session lock held until acknowledgment, retries before the first content event, fallbacks, usage records — and what it gives up (one instance, runs in memory, no durable execution)
 - [Compare](https://theloopengine.com/vs/): two-minute comparisons with LangChain, LangGraph, OpenAI, Vercel AI SDK, LiteLLM and n8n
 - [theloop vs LangChain](https://theloopengine.com/vs/langchain/): a framework you import vs a stateless service you call
 - [theloop vs LangGraph](https://theloopengine.com/vs/langgraph/): checkpointed graphs vs one run that keeps no state
