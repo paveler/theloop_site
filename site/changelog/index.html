@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>theloop changelog — v1.4.1: clear llm validation errors</title>
+<title>theloop changelog — v1.5.0: on-prem, local models, no content in logs</title>
 <meta name="description" content="What changed in theloop, release by release: skills and deferred tools with load_skill and search_tools, Vercel AI SDK 6, the example harness, and the v1.0 contract.">
 <link rel="canonical" href="https://theloopengine.com/changelog/">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
@@ -85,7 +85,7 @@
         "@id": "https://theloopengine.com/#software"
       },
       "datePublished": "2026-10-27",
-      "dateModified": "2026-10-27"
+      "dateModified": "2026-11-12"
     },
     {
       "@type": "BreadcrumbList",
@@ -141,10 +141,45 @@
 
 <section class="wrap" aria-label="Releases">
 
+  <article class="release" id="v1.5.0" aria-labelledby="v150-title">
+    <div class="rail">
+      <h2 id="v150-title">v1.5.0</h2>
+      <a class="tag" href="https://github.com/paveler/theloop/releases/tag/v1.5.0">latest release</a>
+      <time datetime="2026-11-12">2026-11-12</time>
+    </div>
+    <div class="notes">
+      <p>The on-prem release. Additive to contract <code>"1"</code>: everything is opt-in, and an engine with no new settings runs as before.</p>
+      <div class="featured">
+        <span class="who">new · SPEC §9.6, §11.4, §12.5, §14 · RFC 0004</span>
+        <h3>Runs inside a closed network</h3>
+        <p>theloop now installs and works where there is no internet. Point it at a local model, let it reach internal tools on private addresses, keep every prompt and answer out of its logs, and install it from files.</p>
+        <p>A local model is an endpoint you define once in env and name in requests. Ollama, vLLM, TGI, llama.cpp, LM Studio and internal gateways all fit. No key means no credential header at all, and the engine never borrows a cloud key by accident.</p>
+<pre class="req"><span class="k">LLM_ENDPOINT_LOCAL_URL</span>=http://ollama:11434/v1
+<span class="k">EGRESS_PRIVATE_CIDRS</span>=172.28.0.0/16
+<span class="k">EGRESS_PUBLIC_PROVIDERS</span>=0
+<span class="k">LOG_CONTENT</span>=none
+
+<span class="k">"llm"</span>: { <span class="k">"provider"</span>: "endpoint", <span class="k">"endpoint"</span>: "local", <span class="k">"model"</span>: "qwen3:8b" }</pre>
+      </div>
+      <h3>Added</h3>
+      <ul>
+        <li><span><strong>Local models and model endpoints.</strong> <code>LLM_ENDPOINT_&lt;NAME&gt;_*</code> sets a server's URL, dialect (OpenAI or Anthropic), key, context window, limits, thinking and concurrency. One queue per server by default, so a single GPU is not flooded. Reasoning from a local model goes back in the field Ollama and vLLM read, or stays in the history only. Usage and fallbacks name the endpoint. <code>npm run smoke:local</code> checks a live server.</span></li>
+        <li><span><strong>Your own gateway for a named provider.</strong> <code>OPENAI_BASE_URL</code>, <code>ANTHROPIC_BASE_URL</code> and the rest point a provider at an on-prem installation or a corporate gateway, with the env key. GigaChat on-prem takes its OAuth host too.</span></li>
+        <li><span><strong>Private networks, on your terms.</strong> <code>EGRESS_PRIVATE_CIDRS</code> opens the ranges you list, and nothing else. Cloud metadata, link-local and multicast stay closed whatever the settings say, including in disguised IPv6 forms. Allowlist entries can carry ports, plain http works only for hosts you name, and public providers can be switched off so a request fails at once instead of hanging.</span></li>
+        <li><span><strong>No content in logs.</strong> <code>LOG_CONTENT=none</code> keeps prompts, messages, tool payloads, provider and network error text, URL paths and <code>meta</code> values out of stdout, the journal and the error webhook. You can also keep only the classes you need. A request can ask for the same with <code>"logging": { "content": "none" }</code>. A canary test checks every log.</span></li>
+        <li><span><strong>Installed from files.</strong> Every release carries image tarballs for amd64 and arm64, a plain Node bundle, an SBOM, third-party licenses and checksums. The image runs as non-root on a read-only filesystem, also under OpenShift. Secrets come from files. A test proves the engine never opens a connection on its own. <code>deploy/</code> has a compose file with Ollama and a Kubernetes example.</span></li>
+        <li><span><strong>Prometheus metrics.</strong> <code>GET /metrics</code> behind its own token: runs, provider attempts, latency, time to first token, tokens, queues, fallbacks, tools, callbacks and egress refusals.</span></li>
+      </ul>
+      <h3>Changed</h3>
+      <ul>
+        <li><span><strong><code>LOG_BUFFER_CONTENT=0</code> removes more.</strong> It now means <code>LOG_CONTENT=none</code>: provider and network error text, exception messages, URL paths and <code>meta</code> values leave every log too. Credentials inside URLs are refused and never logged.</span></li>
+      </ul>
+    </div>
+  </article>
+
   <article class="release" id="v1.4.1" aria-labelledby="v141-title">
     <div class="rail">
       <h2 id="v141-title">v1.4.1</h2>
-      <a class="tag" href="https://github.com/paveler/theloop/releases/tag/v1.4.1">latest release</a>
       <time datetime="2026-11-07">2026-11-07</time>
     </div>
     <div class="notes">
